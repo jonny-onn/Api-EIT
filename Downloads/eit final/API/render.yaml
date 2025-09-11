@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: api-eit
+    services:
+      - type: web
+        name: api-eit
+        env: node
+        plan: free
+        region: oregon
+        autoDeploy: true
+        buildCommand: npm install
+        startCommand: npm start
+        envVars:
+          - key: NODE_ENV
+            value: production
+          - key: MONGO_URI
+            fromSecret: MONGO_URI
+          - key: ACCESS_TOKEN_MP
+            fromSecret: ACCESS_TOKEN_MP
+          - key: URL_FRONT
+            value: https://tu-frontend.example.com
+          - key: SECRET_WEBHOOK
+            fromSecret: SECRET_WEBHOOK
